@@ -9,3 +9,4 @@ geoarrow is a proof of concept testing various geospatial operators using the co
 
 ## Requirements
 - Tested on Windows 10 using MS VC++ 2019
+- Parsing geonames files using Ben Strasser's [fast-cpp-csv-parser](https://github.com/ben-strasser/fast-cpp-csv-parser)
