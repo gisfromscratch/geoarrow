@@ -7,7 +7,9 @@ cmake_minimum_required (VERSION 3.8)
 include_directories($ENV{vcpkgRoot}/x64-windows/include)
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
-add_executable (geoarrow-shell "geoarrow-shell.cpp" "geoarrow-shell.h")
+add_executable (geoarrow-shell "geoarrow-shell.cpp" "geoarrow-shell.h" 
+	"record.cpp" "record.h"
+	"record_filter.cpp" "record_filter.h")
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.
 if ("${CMAKE_BUILD_TYPE}" MATCHES "Debug")

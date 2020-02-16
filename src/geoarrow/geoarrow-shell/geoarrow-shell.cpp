@@ -13,8 +13,11 @@
 // limitations under the License.
 
 #include "geoarrow-shell.h"
+#include "record.h"
+#include "record_filter.h"
 
 using namespace io;
+using namespace geoarrow;
 using namespace std;
 
 static void read_csv()
@@ -89,10 +92,16 @@ static void read_lines()
 {
 	const size_t latitude_index = 4;
 	const size_t longitude_index = 5;
+	const size_t country_code_index = 8;
+
+	attribute_record_filter record_filter;
+	pair<string, string> country_code_restriction = make_pair("CountryCode", "AD");
+	record_filter.add_equals(country_code_restriction);
 
 	LineReader geonames_reader("cities1000_50.txt");
 	while (char* line = geonames_reader.next_line())
 	{
+		record geonames_record;
 		double latitude;
 		double longitude;
 
@@ -111,7 +120,19 @@ static void read_lines()
 			case longitude_index:
 				longitude = atof((*token_it).str().c_str());
 				break;
+
+			case country_code_index:
+				{
+					pair<string, string> country_code = make_pair("CountryCode", (*token_it).str());
+					geonames_record.set_value(country_code);
+				}
+				break;
 			}
+		}
+
+		if (record_filter.filter(&geonames_record))
+		{
+			cout << "New record filtered . . ." << endl;
 		}
 	}
 }
