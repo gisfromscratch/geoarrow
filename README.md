@@ -2,7 +2,7 @@
 geoarrow is a proof of concept testing various geospatial operators using the column memory format standardized by [Apache Arrow](https://arrow.apache.org/).
 
 ## Features
-- TBD
+- Filtering geonames records by attributes e.g. "CountryCode is binary equal to 'DE'"
 
 ## Spatial operators
 - TBD
