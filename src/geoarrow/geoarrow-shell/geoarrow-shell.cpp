@@ -16,6 +16,8 @@
 #include "record.h"
 #include "record_filter.h"
 
+using namespace arrow::csv;
+using namespace arrow::io;
 using namespace io;
 using namespace geoarrow;
 using namespace std;
@@ -135,6 +137,12 @@ static void read_lines()
 			cout << "New record filtered . . ." << endl;
 		}
 	}
+}
+
+static void read_lines_arrow()
+{
+	auto memory_pool = arrow::default_memory_pool();
+	//shared_ptr<arrow::io::ReadableFile> file;
 }
 
 

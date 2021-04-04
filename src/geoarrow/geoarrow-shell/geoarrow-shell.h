@@ -15,11 +15,13 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include <regex>
 #include <string>
 
 // CSV implementations still missing?
-//#include <arrow/csv/api.h>
+#include <arrow/csv/api.h>
+#include <arrow/io/api.h>
 
 // Ben Strasser's fast-cpp-csv parser.
 #include <csv.h>
