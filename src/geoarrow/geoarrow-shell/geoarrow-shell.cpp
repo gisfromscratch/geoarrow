@@ -150,6 +150,25 @@ static void read_lines_arrow()
 
 	shared_ptr<arrow::io::ReadableFile> file = *maybe_file;
 	cout << "Reading the CSV file . . ." << endl;
+
+	auto read_options = arrow::csv::ReadOptions::Defaults();
+	auto parse_options = arrow::csv::ParseOptions::Defaults();
+	parse_options.delimiter = '\t';
+	auto convert_options = arrow::csv::ConvertOptions::Defaults();
+
+	auto maybe_reader = arrow::csv::TableReader::Make(memory_pool, file, read_options, parse_options, convert_options);
+	if (!maybe_reader.ok())
+	{
+		return;
+	}
+
+	std::shared_ptr<arrow::csv::TableReader> reader = *maybe_reader;
+	auto maybe_table = reader->Read();
+	if (!maybe_table.ok()) {
+		return;
+	}
+
+	std::shared_ptr<arrow::Table> table = *maybe_table;
 }
 
 
