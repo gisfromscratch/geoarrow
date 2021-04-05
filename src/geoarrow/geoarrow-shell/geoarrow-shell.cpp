@@ -142,14 +142,22 @@ static void read_lines()
 static void read_lines_arrow()
 {
 	auto memory_pool = arrow::default_memory_pool();
-	//shared_ptr<arrow::io::ReadableFile> file;
+	auto maybe_file = arrow::io::ReadableFile::Open("cities1000_50.txt", memory_pool);
+	if (!maybe_file.ok())
+	{
+		return;
+	}
+
+	shared_ptr<arrow::io::ReadableFile> file = *maybe_file;
+	cout << "Reading the CSV file . . ." << endl;
 }
 
 
 
 int main(int argc, char* argv[])
 {
-	read_lines();
+	//read_lines();
+	read_lines_arrow();
 
 	cout << "Hello geoarrow . . ." << endl;
 	return 0;
